@@ -55,6 +55,11 @@ EXPOSE 50000
 
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
+ENV DOCKER_GID 497
+
+RUN groupadd -g ${DOCKER_GID} docker
+RUN usermod -G docker jenkins
+
 USER ${user}
 
 COPY jenkins.sh /usr/local/bin/jenkins.sh
